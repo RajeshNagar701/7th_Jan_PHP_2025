@@ -1,0 +1,38 @@
+	h1,h2,h3{
+			color:red;
+			background-color:pink;
+			text-align:center;
+		}
+		.myclass{
+			color:blue;
+			background-color:yellow;
+			text-align:center;
+		}
+		
+		.underline{
+			text-decoration:underline;
+		}
+		
+		#myid{
+			color:white;
+			background-color:red;
+			text-align:right;
+		}
+		
+		
+		h4.test{
+			text-transform:uppercase;
+			background-color:black;
+			color:white;
+		}
+		
+		.box{
+			width:200px;
+			height:200px;
+			background-color:green;
+			color:white;
+		}
+		.box h1{
+			background-color:green;
+			color:white;
+		}
