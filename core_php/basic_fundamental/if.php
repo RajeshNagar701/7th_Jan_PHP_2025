@@ -74,7 +74,7 @@ else
 }
 
 */
-
+/*
 $a=60;
 
 switch($a)
@@ -99,7 +99,7 @@ switch($a)
 	echo "all cond false";
 	break;
 }
-
+*/
 
 
 
@@ -124,6 +124,22 @@ else
 }
 
 */
+
+
+$a=40;
+$b=20;
+$sum=$a+$b;
+
+echo $sum;
+
+if($sum>40)
+{
+	echo "You are pass";
+}
+else
+{
+	echo "You are fail";
+}
 
 
 
