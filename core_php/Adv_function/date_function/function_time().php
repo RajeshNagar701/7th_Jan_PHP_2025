@@ -5,8 +5,9 @@ date_default_timezone_set('asia/calcutta');
 echo time()."<br>";
 
 $day=time()+(2*24*60*60);
-$hour=time()+(2*60*60);
-
 echo date('d/m/y',$day)."<br>";
-echo date('h:i:s A',$hour)."<br>";
+
+
+$time=time()+(2*60*60);
+echo date('h:i:s a',$time)."<br>";
 ?>

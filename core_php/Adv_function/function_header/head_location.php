@@ -1,8 +1,10 @@
 
+<form>
+	<input type="submit" name="submit" value="submit">
+</form>
+
 <?php
-$a=1000;
-$b=100;
-if($a==$b)
+if(isset($_REQUEST['submit']))
 {
 	header('location:wellcome_location.php'); //you will redirected in wellcome.php page  	
 	/*	

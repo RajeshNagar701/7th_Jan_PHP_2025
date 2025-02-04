@@ -1,8 +1,8 @@
 <?php
 /*
 
-date('d/m/y');
-date('h:i:s a');
+date('d/m/y'); 
+date('H:i:s a');
 
 d - The day of the month (from 01 to 31)
 D - A textual representation of a day (three letters)
@@ -42,7 +42,6 @@ c - The ISO-8601 date (e.g. 2013-05-05T16:34:42+00:00)
 r - The RFC 2822 formatted date (e.g. Fri, 12 Apr 2013 12:01:05 +0200)
 U - The seconds since the Unix Epoch (January 1 1970 00:00:00 GMT)
 */
-
 
 date_default_timezone_set('asia/calcutta');
 
