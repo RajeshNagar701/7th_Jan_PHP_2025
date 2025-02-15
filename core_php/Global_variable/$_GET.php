@@ -28,5 +28,12 @@ Method  get => $_GET['']
 
 
 
+<?php 
+session_start();
+echo $_SESSION['user'];
+
+echo $_COOKIE['user'];
+?>
+
 </body>
 </html>
