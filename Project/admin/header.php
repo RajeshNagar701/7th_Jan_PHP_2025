@@ -32,7 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="dashboard">
 
                     <img src="assets/img/logo.png" />
                 </a>
@@ -51,36 +51,36 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a href="dashboard.php" class="menu-top-active">DASHBOARD</a></li>
+                            <li><a href="dashboard" class="menu-top-active">DASHBOARD</a></li>
                             <li>
                                 <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">Categories <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="add_categories.php">Add</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="manage_categories.php">Manage</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="add_categories">Add</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="manage_categories">Manage</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">Products <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="add_products.php">Add</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="manage_products.php">Manage</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="add_products">Add</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="manage_products">Manage</a></li>
                                 </ul>
                             </li>
-                            <li><a href="manage_contacts.php">Contact</a></li>
-                            <li><a href="manage_customers.php">Customer</a></li>
+                            <li><a href="manage_contacts">Contact</a></li>
+                            <li><a href="manage_customers">Customer</a></li>
                             <li>
                                 <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">Sales<i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="manage_cart.php">Cart Reports</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="manage_order.php">Order Reports</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="manage_feedback.php">Feedback Reports</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="manage_cart">Cart Reports</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="manage_order">Order Reports</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="manage_feedback">Feedback Reports</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">Employees <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="add_employees.php">Add</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="manage_employees.php">Manage</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="add_employees">Add</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="manage_employees">Manage</a></li>
                                 </ul>
                             </li>
 

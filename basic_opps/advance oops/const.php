@@ -1,17 +1,14 @@
 <?php
 /*
 
+
 const my_const="const_value";
 
-
-const keyword
+declared by const keyword
 unchangeble
 public visiblity
 call by ::
 call withaout object
-
-
-
 
 Constants are one type of variable which 
 we can define for any class with keyword const.

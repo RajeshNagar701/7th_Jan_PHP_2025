@@ -2,13 +2,15 @@
 
 /*
 
-Magic Methods
+ Advance Function 
+ 
+	Magic Methods / Build in Function/predefined 
 
 Magic methods are special methods which override PHP's default's 
 action when certain actions are performed on an object.
 
-__construct(), 
-__destruct(), 
+__construct(),  // when obj created then automatically call
+__destruct(),   // obj destroy call
 __call(), 
 __callStatic(), 
 __get(), 
@@ -26,7 +28,7 @@ __clone(), and __debugInfo().
 
 
 =================================================================
-__construct(),   call aauto & first call
+__construct(),   call auto & first call
 
 A constructor allows you to initialize an object's properties 
 upon creation of the object. Also called magic function 
@@ -46,29 +48,22 @@ destroy object of class
 call in last 
 
 */
-
-
 class abc
 {
 	function simple()
 	{
 		echo "Simple Function <br>";
 	}
-	
 	function __construct()
 	{
 		echo "Magic function run auto matecaly<br>";
 	}
-	
-	function autocall(){
-		
-		$this->simple();  // normal function call in function with this keywords
-		abc::__construct(); // call by ::(scope resolution)
+	function demo()
+	{
+		$this->simple(); // normal function call by $this->
+		abc::__construct(); // __construct function call by ::(scopeResolution)
 	}
-	
 }
-
-$obj=new abc;
-$obj->autocall();
-
+$obj= new abc;
+$obj->demo();
 ?>

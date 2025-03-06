@@ -111,7 +111,7 @@ $obj=new abc; // object
 $obj->simple();
 $obj->multi();
 
-$obj->name;
+$obj->name;  // public variable acceess out of class
 
 */
 

@@ -7,23 +7,22 @@ trait abc
 {
 	public function test()
 		{
-		echo "This is test method";
+		echo "This is test method <br>";
 		}
 }
 trait xyz
 {
 	public function sample()
 	{
-		echo "this is sample method";
+		echo "this is sample method <br>";
 	}
 }
-
-class c  
+class pqr  
 {
 	use abc,xyz;  // multiple inherit 
 }
 
-$obj=new c();
+$obj=new pqr();
 $obj->test();
 $obj->sample();
 
