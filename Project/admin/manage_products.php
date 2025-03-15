@@ -27,22 +27,35 @@ include_once('header.php');
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+										<th>Categories</th>
                                         <th>Name</th>
+										<th>Description</th>
+										<th>Price</th>
                                         <th>Image</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+								<?php
+								foreach($product_arr as $d)
+								{
+								?>
                                     <tr class="odd gradeX">
-                                        <td>1</td>
-                                        <td>Sweets</td>
-                                        <td>images</td>
+                                        <td><?php echo $d->id?></td>
+                                        <td><?php echo $d->cate_id?></td>
+                                        <td><?php echo $d->name?></td>
+										<td><?php echo $d->description?></td>
+										<td><?php echo $d->price?></td>
+										<td><?php echo $d->image?></td>
                                         <td class="center">
                                             <a href="" class="btn btn-primary">Edit</a>
                                             <a href="" class="btn btn-danger">Delete</a>
+											<a href="" class="btn btn-success"><?php echo $d->status?></a>
                                         </td>
                                     </tr>
-
+								<?php
+								}
+								?>
                                 </tbody>
                             </table>
                         </div>

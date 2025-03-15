@@ -28,20 +28,34 @@ include_once('header.php');
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
+										<th>Email</th>
+										<th>Gender</th>
+										<th>Hobby</th>
                                         <th>Image</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="odd gradeX">
-                                        <td>1</td>
-                                        <td>Sweets</td>
-                                        <td>images</td>
-                                        <td class="center">
-                                            <a href="" class="btn btn-primary">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
+                                     <?php
+									foreach($customer_arr as $d)
+									{
+									?>
+										<tr class="odd gradeX">
+											<td><?php echo $d->id?></td>
+											<td><?php echo $d->name?></td>
+											<td><?php echo $d->email?></td>
+											<td><?php echo $d->gender?></td>
+											<td><?php echo $d->hobby?></td>
+											<td><?php echo $d->image?></td>
+											<td class="center">
+												<a href="" class="btn btn-primary">Edit</a>
+												<a href="" class="btn btn-danger">Delete</a>
+												<a href="" class="btn btn-success"><?php echo $d->status?></a>
+											</td>
+										</tr>
+									<?php
+									}
+									?>
 
                                 </tbody>
                             </table>

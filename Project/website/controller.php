@@ -37,7 +37,7 @@ class control extends model{  // step 2 model class extend for model class funct
 			break;
 			
 			case '/product':
-				$product_arr=$this->select('product');
+				$cat_arr=$this->select('categories');
 				include_once('product.php');
 			break;
 			

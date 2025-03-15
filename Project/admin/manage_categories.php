@@ -33,16 +33,22 @@ include_once('header.php');
                                     </tr>
                                 </thead>
                                 <tbody>
+								<?php
+								foreach($cat_arr as $d)
+								{
+								?>
                                     <tr class="odd gradeX">
-                                        <td>1</td>
-                                        <td>Sweets</td>
+                                        <td><?php echo $d->id?></td>
+                                        <td><?php echo $d->name?></td>
                                         <td>images</td>
                                         <td class="center">
                                             <a href="" class="btn btn-primary">Edit</a>
                                             <a href="" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
-
+								<?php
+								}
+								?>
                                 </tbody>
                             </table>
                         </div>
