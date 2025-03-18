@@ -33,22 +33,19 @@ include_once('header.php');
                     <div id="success"></div>
                     <form method="post" enctype="multipart/form-data">
                         <div class="form-row">
-                            <div class="col-sm-6 control-group">
-                                <input type="text" class="form-control p-4" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
+                            <div class="col-sm-12 control-group">
+                                <input type="text" name="name" class="form-control p-4" id="name" placeholder="Your Name" required="required"  />
                                 <p class="help-block text-danger"></p>
                             </div>
-                            <div class="col-sm-6 control-group">
-                                <input type="number" class="form-control p-4" id="number" placeholder="Your Mobile" required="required" data-validation-required-message="Please enter your email" />
-                                <p class="help-block text-danger"></p>
-                            </div>
+                            
                         </div>
                         <div class="form-row">
                             <div class="col-sm-6 control-group">
-                                <input type="email" class="form-control p-4" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                                <input type="email" name="email" class="form-control p-4" id="email" placeholder="Your Email" required="required" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="col-sm-6 control-group">
-                                <input type="password" class="form-control p-4" id="name" placeholder="Your Password" required="required" data-validation-required-message="Please enter your name" />
+                                <input type="password" name="password" class="form-control p-4" id="name" placeholder="Your Password" required="required" />
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -61,27 +58,21 @@ include_once('header.php');
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="col-sm-6 control-group">
-                                <p class="help-block text-secondary">Launguages :</p>
-                                Hindi : <input type="checkbox" name="lag[]" value="Hindi" class="" />
-                                English : <input type="checkbox" name="lag[]" value="English" class="" />
-                                Gujarati : <input type="checkbox" name="lag[]" value="Gujarati" class="" />
+                                <p class="help-block text-secondary">Hobby :</p>
+                                Singing : <input type="checkbox" name="hobby[]" value="Singing" class="" />
+                                Sports : <input type="checkbox" name="hobby[]" value="Sports" class="" />
+                                Dancing : <input type="checkbox" name="hobby[]" value="Dancing" class="" />
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <select type="text" class="form-control" required="required">
-                                <option>Select Your Country</option>
-                            </select>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="control-group">
-                            <input type="file" class="form-control p-4" id="file" required="required" />
+                            <input type="file" name="image" class="form-control p-4" id="file" required="required" />
                             <p class="help-block text-danger"></p>
                         </div>
 
                         <div>
-                            <button class="btn btn-primary btn-block py-3 px-5" type="submit" id="sendMessageButton">Signup</button>
+                            <button class="btn btn-primary btn-block py-3 px-5" name="submit" type="submit" id="sendMessageButton">Signup</button>
                         </div>
                     </form>
                 </div>

@@ -40,7 +40,7 @@ include_once('header.php');
                                     <tr class="odd gradeX">
                                         <td><?php echo $d->id?></td>
                                         <td><?php echo $d->name?></td>
-                                        <td>images</td>
+                                        <td><img src="../website/upload/categories/<?php echo $d->image?>" width="50px"></td>
                                         <td class="center">
                                             <a href="" class="btn btn-primary">Edit</a>
                                             <a href="" class="btn btn-danger">Delete</a>

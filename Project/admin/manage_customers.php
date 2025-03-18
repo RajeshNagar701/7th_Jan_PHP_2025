@@ -46,7 +46,7 @@ include_once('header.php');
 											<td><?php echo $d->email?></td>
 											<td><?php echo $d->gender?></td>
 											<td><?php echo $d->hobby?></td>
-											<td><?php echo $d->image?></td>
+											<td><img src="../website/upload/customer/<?php echo $d->image?>" width="50px"></td>
 											<td class="center">
 												<a href="" class="btn btn-primary">Edit</a>
 												<a href="" class="btn btn-danger">Delete</a>

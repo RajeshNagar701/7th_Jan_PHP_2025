@@ -40,7 +40,7 @@ include_once('header.php');
                         <h4 class="font-weight-bold text-white mb-0">$</h4>
                     </div>
                     <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
-                        <img class="rounded-circle w-100 h-100" src="img/product-1.jpg" style="object-fit: cover;">
+                        <img class="rounded-circle w-100 h-100" src="upload/categories/<?php echo $d->image?>" style="object-fit: cover;">
                     </div>
                     <h5 class="font-weight-bold mb-4"><?php echo $d->name?></h5>
                     <a href="" class="btn btn-sm btn-secondary">View Product</a>

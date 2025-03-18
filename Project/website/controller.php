@@ -25,6 +25,33 @@ class control extends model{  // step 2 model class extend for model class funct
 			break;
 			
 			case '/signup':
+				if(isset($_REQUEST['submit']))
+				{
+					$name=$_REQUEST['name'];
+					$email=$_REQUEST['email'];
+					$password=md5($_REQUEST['password']); // md5 encrypt
+					$gender=$_REQUEST['gender'];
+					
+					$hobby_arr=$_REQUEST['hobby'];
+					$hobby=implode(',',$hobby_arr); // arr to string
+					
+					//image 
+					$image=$_FILES['image']['name'];
+					$path='upload/customer/'.$image;
+					$temp_image=$_FILES['image']['tmp_name'];
+					move_uploaded_file($temp_image,$path);
+					
+					$arr=array("name"=>$name,"email"=>$email,"password"=>$password,"gender"=>$gender,
+					"hobby"=>$hobby,"image"=>$image);
+					
+					$res=$this->insert('customer',$arr);
+					if($res)
+					{
+						echo "<script>
+							alert('Signup Success');
+						</script>";
+					}
+				}
 				include_once('signup.php');
 			break;
 			
@@ -50,6 +77,22 @@ class control extends model{  // step 2 model class extend for model class funct
 			break;
 			
 			case '/contact':
+				if(isset($_REQUEST['submit']))
+				{
+					$name=$_REQUEST['name'];
+					$email=$_REQUEST['email'];
+					$comment=$_REQUEST['comment'];
+					
+					$arr=array("name"=>$name,"email"=>$email,"comment"=>$comment);
+					
+					$res=$this->insert('contact',$arr);
+					if($res)
+					{
+						echo "<script>
+							alert('Inquiry Submitted Success');
+						</script>";
+					}
+				}
 				include_once('contact.php');
 			break;
 			

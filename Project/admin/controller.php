@@ -25,6 +25,25 @@ class control extends model{  // step 2 model class extend for model class funct
 			break;
 			
 			case '/add_categories':
+				if(isset($_REQUEST['submit']))
+				{
+					$name=$_REQUEST['name'];
+					//image 
+					$image=$_FILES['image']['name'];
+					$path='../website/upload/categories/'.$image;
+					$temp_image=$_FILES['image']['tmp_name'];
+					move_uploaded_file($temp_image,$path);
+					
+					$arr=array("name"=>$name,"image"=>$image);
+					
+					$res=$this->insert('categories',$arr);
+					if($res)
+					{
+						echo "<script>
+							alert('categories inserted Success');
+						</script>";
+					}
+				}
 				include_once('add_categories.php');
 			break;
 			
