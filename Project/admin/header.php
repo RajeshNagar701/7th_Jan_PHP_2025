@@ -1,3 +1,17 @@
+
+<?php	
+if(isset($_SESSION['s_aid']))
+{
+}
+else
+{
+	echo "<script>
+		alert('Login First !');
+		window.location='admin-login';
+	</script>";
+}	
+?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -40,7 +54,7 @@
             </div>
 
             <div class="right-div">
-                <a href="#" class="btn btn-danger pull-right">LOG ME OUT</a>
+                <a href="admin_logout" class="btn btn-danger pull-right">LOG ME OUT</a>
             </div>
         </div>
     </div>

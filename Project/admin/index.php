@@ -1,4 +1,15 @@
-﻿	<!DOCTYPE html>
+﻿	
+	<?php
+	if(isset($_SESSION['s_aid']))
+	{
+		echo "<script>
+			window.location='dashboard';
+		</script>";
+		
+	}
+	?>
+	
+	<!DOCTYPE html>
 	<html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
@@ -65,9 +76,23 @@
 	                </div>
 
 	            </div>
-	            <div class="row">
-	                <div class="col-md-12">
-
+	            <div class="row mx-auto d-block">
+	                <div class="col-md-12 p-5">
+						<form method="post" enctype="multipart/form-data">
+							<div class="form-row">
+								<div class="col-sm-12 control-group">
+									<input type="email" name="email" class="form-control p-4" placeholder="Your Email" required="required" />
+									<p class="help-block text-danger"></p>
+								</div>
+								<div class="col-sm-12 control-group">
+									<input type="password" name="password" class="form-control p-4"  placeholder="Your Password" required="required" />
+									<p class="help-block text-danger"></p>
+								</div>
+								<div class="col-sm-12 control-group">
+									<button class="btn btn-primary btn-block py-3 px-5" name="submit" type="submit" >Login</button>
+								</div>
+							</div>
+						</form>
 	                </div>
 
 	            </div>

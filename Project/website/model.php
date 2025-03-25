@@ -20,11 +20,6 @@ class model {
 		return $arr;
 	}
 	
-	function select_where(){
-		
-		
-	}
-	
 	function insert($tbl,$arr){ //$arr=array("name"=>$name,"email"=>$email,"comment"=>$comment);
 		
 		
@@ -38,6 +33,25 @@ class model {
 		$run=$this->conn->query($ins); // query run of database
 		return $run;
 	}
+	
+	// select * from $tbl where email="" and pass=""
+	
+	function select_where($tbl,$arr)
+	{	
+		$col_arr=array_keys($arr);
+		$values_arr=array_values($arr);
+		
+		$sel="select * from $tbl where 1=1";    // 1=1 means query continue
+		$i=0;
+		foreach($arr as $d)
+		{
+			$sel.=" and $col_arr[$i]='$values_arr[$i]'";
+			$i++;
+		}
+		$run=$this->conn->query($sel); // query run of database
+		return $run;
+	}
+	
 	function delete(){
 		
 	}

@@ -9,6 +9,8 @@ class control extends model{  // step 2 model class extend for model class funct
 	
 	function __construct(){
 		
+		session_start();
+		
 		model::__construct();  // step 3 call model __construct for database connectivity
 		
 		
@@ -56,8 +58,62 @@ class control extends model{  // step 2 model class extend for model class funct
 			break;
 			
 			case '/login':
+				if(isset($_REQUEST['submit']))
+				{
+					$email=$_REQUEST['email'];
+					$password=md5($_REQUEST['password']);
+					
+					$arr=array("email"=>$email,"password"=>$password);
+					
+					$run=$this->select_where('customer',$arr);
+					$chk=$run->num_rows; // check row wise query true or false
+					
+					
+					
+					if($chk==1) // 1 means true 
+					{	
+						//session create
+						
+						$fetch=$run->fetch_object();
+						
+						$_SESSION['s_id']=$fetch->id;
+						$_SESSION['s_name']=$fetch->name;;
+						$_SESSION['s_email']=$fetch->email;;
+						
+						echo "<script>
+							alert('Login Success');
+							window.location='index';
+						</script>";
+					}
+					else
+					{
+						echo "<script>
+							alert('Login Failed Due to wrong credancial');
+						</script>";
+					}
+				}
 				include_once('login.php');
 			break;
+			
+			
+			case '/user_profile':
+				include_once('user_profile.php');
+			break;
+			
+			case '/user_logout':
+				
+				// session _delete
+				unset($_SESSION['s_id']);
+				unset($_SESSION['s_name']);
+				unset($_SESSION['s_email']);
+				echo "<script>
+					alert('Logout Success');
+					window.location='index';
+				</script>";
+			break;
+			
+			
+			
 			
 			case '/about':
 				include_once('about.php');

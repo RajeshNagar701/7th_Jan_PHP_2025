@@ -19,87 +19,46 @@ include_once('header.php');
                         Add Product
                     </div>
                     <div class="panel-body">
-                        <form role="form">
-                            <div class="form-group">
-                                <label>Enter Name</label>
-                                <input class="form-control" type="text" />
-                                <p class="help-block">Help text here.</p>
-                            </div>
-                            <div class="form-group">
-                                <label>Enter Email</label>
-                                <input class="form-control" type="text" />
-                                <p class="help-block">Help text here.</p>
-                            </div>
-                            <div class="form-group">
-                                <label>Text area</label>
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
+					
+					
+						 <form role="form" method="post" enctype="multipart/form-data">
+							<div class="form-group">
                                 <label>Select Example</label>
-                                <select class="form-control">
-                                    <option>One Vale</option>
-                                    <option>Two Vale</option>
-                                    <option>Three Vale</option>
-                                    <option>Four Vale</option>
+								
+                                <select name="cate_id" class="form-control">
+                                    
+									<option value="">--- Select Product Categories ---</option>
+                                    <?php
+									foreach($categories_arr as $d)
+									{
+									?>
+									<option value="<?php echo $d->id;?>"><?php echo $d->name;?></option>
+                                    <?php
+									}
+									?>
                                 </select>
                             </div>
-                            <hr />
                             <div class="form-group">
-                                <label>Multiple Select Example</label>
-                                <select multiple="" class="form-control">
-                                    <option>One Vale</option>
-                                    <option>Two Vale</option>
-                                    <option>Three Vale</option>
-                                    <option>Four Vale</option>
-                                </select>
+                                <label>Enter Product Name</label>
+                                <input class="form-control" name="name" type="text" />
                             </div>
-                            <hr />
+							 <div class="form-group">
+                                <label>Decsription</label>
+                                <textarea name="description" class="form-control" rows="3"></textarea>
+                            </div>
+                            
                             <div class="form-group">
-                                <label>Checkboxes</label>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="" />Checkbox Example One
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="" />Checkbox Example Two
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="" />Checkbox Example Three
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="" />Checkbox Example Four
-                                    </label>
-                                </div>
+                                <label>Enter Product Price</label>
+                                <input class="form-control" name="price" type="number" />
                             </div>
-                            <hr />
-                            <div class="form-group">
-                                <label>Radio Button Examples</label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Radio Example One
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio Example Two
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio Example Three
-                                    </label>
-                                </div>
+							<div class="form-group">
+                                <label>Upload Categories Image</label>
+                                <input class="form-control" name="image" type="file" />
                             </div>
-
-                            <button type="submit" class="btn btn-info">Send Message </button>
-
+                            <button type="submit" name="submit" class="btn btn-info">Add</button>
                         </form>
+					
+                        
                     </div>
                 </div>
             </div>

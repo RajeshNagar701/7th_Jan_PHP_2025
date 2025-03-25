@@ -9,6 +9,8 @@ class control extends model{  // step 2 model class extend for model class funct
 	
 	function __construct(){
 		
+		session_start();
+		
 		model::__construct();  // step 3 call model __construct for database connectivity
 		
 		
@@ -17,8 +19,55 @@ class control extends model{  // step 2 model class extend for model class funct
 		switch($path){
 			
 			case '/admin-login':
+				if(isset($_REQUEST['submit']))
+				{
+					$email=$_REQUEST['email'];
+					$password=md5($_REQUEST['password']);
+					
+					$arr=array("email"=>$email,"password"=>$password);
+					
+					$res=$this->select_where('admin',$arr);
+					$chk=$res->num_rows; // check row wise query true or false
+					if($chk==1) // 1 means true 
+					{
+						
+							//session create
+						$fetch=$res->fetch_object();
+						
+						$_SESSION['s_aid']=$fetch->id;
+						$_SESSION['s_aname']=$fetch->name;;
+						$_SESSION['s_aemail']=$fetch->email;;
+						
+						echo "<script>
+							alert('Login Success');
+							window.location='dashboard';
+						</script>";
+					}
+					else
+					{
+						echo "<script>
+							alert('Login Failed Due to wrong credancial');
+						</script>";
+					}
+				}
 				include_once('index.php');
 			break;
+			
+			case '/admin_logout':
+				
+				// session _delete
+				
+				unset($_SESSION['s_aid']);
+				unset($_SESSION['s_aname']);
+				unset($_SESSION['s_aemail']);
+				
+				echo "<script>
+					alert('Logout Success');
+					window.location='admin-login';
+				</script>";
+			break;
+			
+			
 			
 			case '/dashboard':
 				include_once('dashboard.php');
@@ -53,7 +102,30 @@ class control extends model{  // step 2 model class extend for model class funct
 			break;
 			
 			case '/add_products':
-			
+				$categories_arr=$this->select('categories');
+				if(isset($_REQUEST['submit']))
+				{
+					$cate_id=$_REQUEST['cate_id'];
+					$name=$_REQUEST['name'];
+					$description=$_REQUEST['description'];
+					$price=$_REQUEST['price'];
+					//image 
+					$image=$_FILES['image']['name'];
+					$path='../website/upload/product/'.$image;
+					$temp_image=$_FILES['image']['tmp_name'];
+					move_uploaded_file($temp_image,$path);
+					
+					$arr=array("cate_id"=>$cate_id,"name"=>$name,"description"=>$description,
+					"price"=>$price,"image"=>$image);
+					
+					$res=$this->insert('product',$arr);
+					if($res)
+					{
+						echo "<script>
+							alert('product inserted Success');
+						</script>";
+					}
+				}
 				include_once('add_products.php');
 			break;
 			

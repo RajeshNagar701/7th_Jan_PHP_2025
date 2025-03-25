@@ -33,13 +33,37 @@
             <div class="row">
                 <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                        <a class="text-white pr-3" href="signup">Signup</a>
-                        <span class="text-white">|</span>
-                        <a class="text-white px-3" href="login">Login</a>
+						<?php
+						if(isset($_SESSION['s_id']))
+						{
+						?>
+							<a class="text-white pr-3" href="user_logout">Logout</a>
+							<span class="text-white">|</span>
+							<a class="text-white px-3" href="#">Hi .. <?php echo $_SESSION['s_name'];?></a>
+						<?php
+						}
+						else
+						{
+						?>
+							<a class="text-white pr-3" href="signup">Signup</a>
+							<span class="text-white">|</span>
+							<a class="text-white px-3" href="login">Login</a>
+						<?php
+						}
+						?>
                     </div>
                 </div>
                 <div class="col-md-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
+						<?php
+						if(isset($_SESSION['s_id']))
+						{
+						?>
+							<a class="text-white pr-3" href="user_profile">My Account</a>
+							<span class="text-white">|</span>
+						<?php
+						}
+						?>
                         <a class="text-white px-3" href="">
                             <i class="fab fa-facebook-f"></i>
                         </a>

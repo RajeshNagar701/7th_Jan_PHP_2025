@@ -1,5 +1,11 @@
 <?php
-
+if(isset($_SESSION['s_id']))
+{
+	echo "<script>
+		window.location='index';
+	</script>";
+	
+}
 include_once('header.php');
 
 ?>
@@ -31,29 +37,26 @@ include_once('header.php');
             <div class="col-lg-9">
                 <div class="contact-form bg-light rounded p-5">
                     <div id="success"></div>
-                    <form method="post" enctype="multipart/form-data">
+						<form method="post" enctype="multipart/form-data">
+							<div class="form-row">
+								<div class="col-sm-12 control-group">
+									<input type="email" name="email" class="form-control p-4" placeholder="Your Email" required="required" />
+									<p class="help-block text-danger"></p>
+								</div>
+								<div class="col-sm-12 control-group">
+									<input type="password" name="password" class="form-control p-4"  placeholder="Your Password" required="required" />
+									<p class="help-block text-danger"></p>
+								</div>
+								 <div class=" col-sm-12 control-group">
+									Remember Me : <input type="checkbox" name="rem" value="remember" />
+									<p class="help-block text-danger"></p>
+								</div>
+								<div class="col-sm-12 control-group">
+									<button class="btn btn-primary btn-block py-3 px-5" name="submit" type="submit" >Login</button>
+								</div>
+							</div>
+						</form>
 
-                        <div class="form-row">
-                            <div class="col-sm-12 control-group">
-                                <input type="email" class="form-control p-4" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="col-sm-12 control-group">
-                                <input type="password" class="form-control p-4" id="name" placeholder="Your Password" required="required" data-validation-required-message="Please enter your name" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-
-
-                        <div class="control-group">
-                            Remember Me : <input type="checkbox" name="rem" value="remember" />
-                            <p class="help-block text-danger"></p>
-                        </div>
-
-                        <div>
-                            <button class="btn btn-primary btn-block py-3 px-5" type="submit" id="sendMessageButton">Login</button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
