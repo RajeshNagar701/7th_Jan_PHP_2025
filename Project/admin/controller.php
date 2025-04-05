@@ -134,6 +134,19 @@ class control extends model{  // step 2 model class extend for model class funct
 				include_once('manage_products.php');
 			break;
 			
+			
+			case '/edit_products':
+				$categories_arr=$this->select('categories');
+				if(isset($_REQUEST['edit_products']))
+				{
+					$id=$_REQUEST['edit_products'];
+					$arr=array("id"=>$id);
+					$run=$this->select_where('product',$arr);
+					$fetch=$run->fetch_object();
+				}
+				include_once('edit_products.php');
+			break;
+			
 			case '/manage_cart':
 				include_once('manage_cart.php');
 			break;
@@ -146,6 +159,8 @@ class control extends model{  // step 2 model class extend for model class funct
 				$contact_arr=$this->select('contact');
 				include_once('manage_contacts.php');
 			break;
+			
+			
 			
 			case '/manage_feedback':
 				include_once('manage_feedback.php');
@@ -164,6 +179,87 @@ class control extends model{  // step 2 model class extend for model class funct
 				include_once('manage_customers.php');
 			break;
 			
+			case '/delete':
+			
+			if(isset($_REQUEST['del_contact']))
+			{
+				$id=$_REQUEST['del_contact'];
+				$where=array("id"=>$id);
+				$run=$this->delete('contact',$where);
+				if($run)
+				{
+					echo "<script>
+							alert('Contact deleted Success');
+							window.location='manage_contacts';
+						</script>";
+				}
+			}
+			
+			if(isset($_REQUEST['del_categorie']))
+			{
+				$id=$_REQUEST['del_categorie'];
+				$where=array("id"=>$id);
+				
+				// get image data for delete 
+				$res=$this->select_where('categories',$where);
+				$fetch=$res->fetch_object();
+				$image=$fetch->image;
+				
+				$run=$this->delete('categories',$where);
+				if($run)
+				{
+					unlink('../website/upload/categories/'.$image);
+					echo "<script>
+							alert('Categories deleted Success');
+							window.location='manage_categories';
+						</script>";
+				}
+			}
+			
+			if(isset($_REQUEST['del_customer']))
+			{
+				$id=$_REQUEST['del_customer'];
+				$where=array("id"=>$id);
+				
+				
+				// get image data for delete 
+				$res=$this->select_where('customer',$where);
+				$fetch=$res->fetch_object();
+				$image=$fetch->image;
+				
+				$run=$this->delete('customer',$where);
+				if($run)
+				{
+					unlink('../website/upload/customer/'.$image);
+					echo "<script>
+							alert('customer deleted Success');
+							window.location='manage_customers';
+						</script>";
+				}
+			}
+			
+			if(isset($_REQUEST['del_product']))
+			{
+				$id=$_REQUEST['del_product'];
+				$where=array("id"=>$id);
+				
+				// get image data for delete 
+				$res=$this->select_where('product',$where);
+				$fetch=$res->fetch_object();
+				$image=$fetch->image;
+				
+				$run=$this->delete('product',$where);
+				if($run)
+				{
+					unlink('../website/upload/product/'.$image);
+					echo "<script>
+							alert('Product deleted Success');
+							window.location='manage_products';
+						</script>";
+				}
+			}
+			
+			break;
 			
 		}
 		

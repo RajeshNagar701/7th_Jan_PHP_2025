@@ -43,7 +43,7 @@ include_once('header.php');
                                         <td><img src="../website/upload/categories/<?php echo $d->image?>" width="50px"></td>
                                         <td class="center">
                                             <a href="" class="btn btn-primary">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
+                                            <a href="delete?del_categorie=<?php echo $d->id?>" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
 								<?php

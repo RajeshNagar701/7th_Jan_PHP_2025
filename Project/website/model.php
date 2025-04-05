@@ -34,7 +34,10 @@ class model {
 		return $run;
 	}
 	
-	// select * from $tbl where email="" and pass=""
+	// select * from $tbl where email="" and pass="" 
+	
+	// data fetch 
+	// login 
 	
 	function select_where($tbl,$arr)
 	{	
@@ -52,8 +55,20 @@ class model {
 		return $run;
 	}
 	
-	function delete(){
+	function delete($tbl,$where){
 		
+		$col_arr=array_keys($where);
+		$values_arr=array_values($where);
+		
+		$del="delete from $tbl where 1=1";    // 1=1 means query continue
+		$i=0;
+		foreach($where as $d)
+		{
+			$del.=" and $col_arr[$i]='$values_arr[$i]'";
+			$i++;
+		}
+		$run=$this->conn->query($del); // query run of database
+		return $run;
 	}
 	
 	function update(){

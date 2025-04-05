@@ -68,17 +68,14 @@ class control extends model{  // step 2 model class extend for model class funct
 					$run=$this->select_where('customer',$arr);
 					$chk=$run->num_rows; // check row wise query true or false
 					
-					
-					
 					if($chk==1) // 1 means true 
 					{	
 						//session create
 						
 						$fetch=$run->fetch_object();
-						
 						$_SESSION['s_id']=$fetch->id;
-						$_SESSION['s_name']=$fetch->name;;
-						$_SESSION['s_email']=$fetch->email;;
+						$_SESSION['s_name']=$fetch->name;
+						$_SESSION['s_email']=$fetch->email;
 						
 						echo "<script>
 							alert('Login Success');
@@ -94,14 +91,26 @@ class control extends model{  // step 2 model class extend for model class funct
 				}
 				include_once('login.php');
 			break;
-			
-			
+				
 			case '/user_profile':
+				$arr=array("id"=>$_SESSION['s_id']);
+				$run=$this->select_where('customer',$arr);
+				$fetch=$run->fetch_object();
 				include_once('user_profile.php');
 			break;
 			
+			case '/edit_profile':
+				if(isset($_REQUEST['edit_profile']))
+				{
+					$id=$_REQUEST['edit_profile'];
+					$arr=array("id"=>$id);
+					$run=$this->select_where('customer',$arr);
+					$fetch=$run->fetch_object();
+				}
+				include_once('edit_profile.php');
+			break;
+			
 			case '/user_logout':
-				
 				// session _delete
 				unset($_SESSION['s_id']);
 				unset($_SESSION['s_name']);
@@ -111,9 +120,6 @@ class control extends model{  // step 2 model class extend for model class funct
 					window.location='index';
 				</script>";
 			break;
-			
-			
-			
 			
 			case '/about':
 				include_once('about.php');
@@ -151,8 +157,6 @@ class control extends model{  // step 2 model class extend for model class funct
 				}
 				include_once('contact.php');
 			break;
-			
-			
 		}
 		
 	}

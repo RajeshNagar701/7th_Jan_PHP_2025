@@ -10,7 +10,6 @@
 			window.location='index';
 		</script>";
 	}	
-	
     include_once('header.php');
 
     ?>
@@ -42,14 +41,16 @@
 	        </div>
 	        <div class="row">
 	            <div class="offset-lg-2 col-lg-4 py-5">
-	                <h4 class="font-weight-bold mb-3">About Us</h4>
-	                <h5 class="text-muted mb-3">Eos kasd eos dolor vero vero, lorem stet diam rebum. Ipsum amet sed vero dolor sea</h5>
-	                <p>Takimata sed vero vero no sit sed, justo clita duo no duo amet et, nonumy kasd sed dolor eos diam lorem eirmod. Amet sit amet amet no. Est nonumy sed labore eirmod sit magna. Erat at est justo sit ut. Labor diam sed ipsum et eirmod</p>
-	                <a href="edit_profile" class="btn btn-secondary mt-2">Edit Profile</a>
+	                <h4 class="font-weight-bold mb-3">Name : <?php echo $fetch->name?></h4>
+					 <h4 class="font-weight-bold mb-3">Id : <?php echo $fetch->id?></h4>
+	                <h5 class="text-muted mb-3">Email : <?php echo $fetch->email?></h5>
+					<h5 class="text-muted mb-3">Gender : <?php echo $fetch->gender?></h5>
+					<h5 class="text-muted mb-3">Hobby : <?php echo $fetch->hobby?></h5>
+	                <a href="edit_profile?edit_profile=<?php echo $fetch->id?>" class="btn btn-secondary mt-2">Edit Profile</a>
 	            </div>
 	            <div class="col-lg-4" style="min-height: 400px;">
 	                <div class="position-relative h-100 rounded overflow-hidden">
-	                    <img class="position-absolute w-100 h-100" src="img/about.jpg" style="object-fit: cover;">
+	                    <img class="position-absolute w-100 h-100" src="upload/customer/<?php echo $fetch->image?>" style="object-fit: cover;">
 	                </div>
 	            </div>
 	        </div>

@@ -46,10 +46,10 @@ include_once('header.php');
                                         <td><?php echo $d->name?></td>
 										<td><?php echo $d->description?></td>
 										<td><?php echo $d->price?></td>
-										<td><?php echo $d->image?></td>
+										<td><img src="../website/upload/product/<?php echo $d->image?>" width="50px"></td>
                                         <td class="center">
-                                            <a href="" class="btn btn-primary">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
+                                            <a href="edit_products?edit_products=<?php echo $d->id?>" class="btn btn-primary">Edit</a>
+                                            <a href="delete?del_product=<?php echo $d->id?>" class="btn btn-danger">Delete</a>
 											<a href="" class="btn btn-success"><?php echo $d->status?></a>
                                         </td>
                                     </tr>

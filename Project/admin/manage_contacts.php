@@ -45,7 +45,7 @@ include_once('header.php');
 											<td><?php echo $d->comment?></td>
 											<td class="center">
 												<a href="" class="btn btn-primary">Edit</a>
-												<a href="" class="btn btn-danger">Delete</a>
+												<a href="delete?del_contact=<?php echo $d->id?>" class="btn btn-danger">Delete</a>
 											</td>
 										</tr>
 									<?php
