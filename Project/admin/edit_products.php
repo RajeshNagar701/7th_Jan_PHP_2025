@@ -69,7 +69,7 @@ include_once('header.php');
                                 <input class="form-control" name="image" type="file" />
 								<td><img src="../website/upload/product/<?php echo $fetch->image?>" width="50px"></td>
                             </div>
-                            <button type="submit" name="submit" class="btn btn-info">Add</button>
+                            <button type="submit" name="save" class="btn btn-info">Save</button>
                         </form>
 					
                         

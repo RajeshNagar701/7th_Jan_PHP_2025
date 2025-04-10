@@ -81,11 +81,15 @@
 						<form method="post" enctype="multipart/form-data">
 							<div class="form-row">
 								<div class="col-sm-12 control-group">
-									<input type="email" name="email" class="form-control p-4" placeholder="Your Email" required="required" />
+									<input type="email" name="email" value="<?php if(isset($_COOKIE['a_email'])) { echo $_COOKIE['a_email'];} ?>" class="form-control p-4" placeholder="Your Email" required="required" />
 									<p class="help-block text-danger"></p>
 								</div>
 								<div class="col-sm-12 control-group">
-									<input type="password" name="password" class="form-control p-4"  placeholder="Your Password" required="required" />
+									<input type="password" name="password" value="<?php if(isset($_COOKIE['a_pass'])) { echo $_COOKIE['a_pass'];} ?>" class="form-control p-4"  placeholder="Your Password" required="required" />
+									<p class="help-block text-danger"></p>
+								</div>
+								<div class=" col-sm-12 control-group">
+									Remember Me : <input type="checkbox" name="rem" value="remember" />
 									<p class="help-block text-danger"></p>
 								</div>
 								<div class="col-sm-12 control-group">

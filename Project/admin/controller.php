@@ -22,7 +22,8 @@ class control extends model{  // step 2 model class extend for model class funct
 				if(isset($_REQUEST['submit']))
 				{
 					$email=$_REQUEST['email'];
-					$password=md5($_REQUEST['password']);
+					$pass=$_REQUEST['password'];
+					$password=md5($pass);
 					
 					$arr=array("email"=>$email,"password"=>$password);
 					
@@ -35,8 +36,14 @@ class control extends model{  // step 2 model class extend for model class funct
 						$fetch=$res->fetch_object();
 						
 						$_SESSION['s_aid']=$fetch->id;
-						$_SESSION['s_aname']=$fetch->name;;
-						$_SESSION['s_aemail']=$fetch->email;;
+						$_SESSION['s_aname']=$fetch->name;
+						$_SESSION['s_aemail']=$fetch->email;
+						
+						if(isset($_REQUEST['rem']))
+						{
+							setcookie('a_email',$email,time()+(24*3600));
+							setcookie('a_pass',$pass,time()+(24*3600));
+						}
 						
 						echo "<script>
 							alert('Login Success');
@@ -140,12 +147,58 @@ class control extends model{  // step 2 model class extend for model class funct
 				if(isset($_REQUEST['edit_products']))
 				{
 					$id=$_REQUEST['edit_products'];
-					$arr=array("id"=>$id);
-					$run=$this->select_where('product',$arr);
+					$where=array("id"=>$id);
+					$run=$this->select_where('product',$where);
 					$fetch=$run->fetch_object();
+					
+					$del_img=$fetch->image;
+					
+					if(isset($_REQUEST['save']))
+					{
+						$cate_id=$_REQUEST['cate_id'];
+						$name=$_REQUEST['name'];
+						$description=$_REQUEST['description'];
+						$price=$_REQUEST['price'];
+						//image 
+						if($_FILES['image']['size']>0)
+						{
+							$image=$_FILES['image']['name'];
+							$path='../website/upload/product/'.$image;
+							$temp_image=$_FILES['image']['tmp_name'];
+							move_uploaded_file($temp_image,$path);
+						
+							$arr=array("cate_id"=>$cate_id,"name"=>$name,"description"=>$description,
+							"price"=>$price,"image"=>$image);
+							
+							$res=$this->update('product',$arr,$where);
+							if($res)
+							{
+								unlink('../website/upload/product/'.$del_img);
+								echo "<script>
+									alert('Updated Success');
+									window.location='manage_products';
+								</script>";
+							}
+						}
+						else
+						{
+							$arr=array("cate_id"=>$cate_id,"name"=>$name,"description"=>$description,
+							"price"=>$price);
+							
+							$res=$this->update('product',$arr,$where);
+							if($res)
+							{
+								echo "<script>
+									alert('Updated Success');
+									window.location='manage_products';
+								</script>";
+							}
+						}
+					}
 				}
 				include_once('edit_products.php');
 			break;
+			
 			
 			case '/manage_cart':
 				include_once('manage_cart.php');

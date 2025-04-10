@@ -81,13 +81,13 @@ include_once('header.php');
                         </div>
 
                         <div class="control-group">
-                            <input type="file" name="image" class="form-control p-4" id="file" required="required" />
+                            <input type="file" name="image" class="form-control p-4" id="file" />
 							<img src="upload/customer/<?php echo $fetch->image?>" style="width:100px;height:100px" >
                             <p class="help-block text-danger"></p>
                         </div>
 
                         <div>
-                            <button class="btn btn-primary btn-block py-3 px-5" name="submit" type="submit" id="sendMessageButton">Save</button>
+                            <button class="btn btn-primary btn-block py-3 px-5" name="save" type="submit" id="sendMessageButton">Save</button>
                         </div>
                     </form>
                 </div>

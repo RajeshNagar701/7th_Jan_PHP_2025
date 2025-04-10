@@ -71,8 +71,39 @@ class model {
 		return $run;
 	}
 	
-	function update(){
+	// update table set key=value,key=value where id=1
+	function update($tbl,$arr,$where){
 		
+		$col_arr=array_keys($arr);
+		$values_arr=array_values($arr);
+		
+		$upd="update $tbl set ";
+		$j=0;
+		$count=count($arr);
+		foreach($arr as $d)
+		{
+			if($count==$j+1)
+			{
+				$upd.=" $col_arr[$j]='$values_arr[$j]'";
+			}
+			else
+			{
+				$upd.=" $col_arr[$j]='$values_arr[$j]',";
+				$j++;
+			}
+		}
+		$wcol_arr=array_keys($where);
+		$wvalues_arr=array_values($where);
+		
+		$upd.=" where 1=1";    // 1=1 means query continue
+		$i=0;
+		foreach($where as $d)
+		{
+			echo $upd.=" and $wcol_arr[$i]='$wvalues_arr[$i]'";
+			$i++;
+		}
+		$run=$this->conn->query($upd); // query run of database
+		return $run;	
 	}
 	
 	

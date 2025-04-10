@@ -61,7 +61,8 @@ class control extends model{  // step 2 model class extend for model class funct
 				if(isset($_REQUEST['submit']))
 				{
 					$email=$_REQUEST['email'];
-					$password=md5($_REQUEST['password']);
+					$pass=$_REQUEST['password'];
+					$password=md5($pass);
 					
 					$arr=array("email"=>$email,"password"=>$password);
 					
@@ -76,6 +77,13 @@ class control extends model{  // step 2 model class extend for model class funct
 						$_SESSION['s_id']=$fetch->id;
 						$_SESSION['s_name']=$fetch->name;
 						$_SESSION['s_email']=$fetch->email;
+						
+						if(isset($_REQUEST['rem']))
+						{
+							setcookie('u_email',$email,time()+15);
+							setcookie('u_pass',$pass,time()+15);
+						}
+						
 						
 						echo "<script>
 							alert('Login Success');
@@ -103,12 +111,62 @@ class control extends model{  // step 2 model class extend for model class funct
 				if(isset($_REQUEST['edit_profile']))
 				{
 					$id=$_REQUEST['edit_profile'];
-					$arr=array("id"=>$id);
-					$run=$this->select_where('customer',$arr);
+					$where=array("id"=>$id);
+					$run=$this->select_where('customer',$where);
 					$fetch=$run->fetch_object();
+					
+					$del_img=$fetch->image;
+					
+					if(isset($_REQUEST['save']))
+					{
+						
+						$name=$_REQUEST['name'];
+						$email=$_REQUEST['email'];
+						$gender=$_REQUEST['gender'];
+						
+						$hobby_arr=$_REQUEST['hobby'];
+						$hobby=implode(',',$hobby_arr); // arr to string
+						
+						//image 
+						if($_FILES['image']['size']>0)
+						{
+							$image=$_FILES['image']['name'];
+							$path='upload/customer/'.$image;
+							$temp_image=$_FILES['image']['tmp_name'];
+							move_uploaded_file($temp_image,$path);
+						
+							$arr=array("name"=>$name,"email"=>$email,"gender"=>$gender,
+							"hobby"=>$hobby,"image"=>$image);
+							$res=$this->update('customer',$arr,$where);
+							if($res)
+							{
+								unlink('upload/customer/'.$del_img);
+								echo "<script>
+									alert('Updated Success');
+									window.location='user_profile';
+								</script>";
+							}
+						}
+						else
+						{
+							$arr=array("name"=>$name,"email"=>$email,"gender"=>$gender,
+							"hobby"=>$hobby);
+							$res=$this->update('customer',$arr,$where);
+							if($res)
+							{
+								echo "<script>
+									alert('Updated Success');
+									window.location='user_profile';
+								</script>";
+							}
+						}
+					}
 				}
 				include_once('edit_profile.php');
 			break;
+			
+			
+			
 			
 			case '/user_logout':
 				// session _delete
