@@ -170,8 +170,6 @@ function reg_form(str)
 		}
 	} 
 	
-	
-	//below function is for pdf validation
 	function check1(file)
 	{
 	
@@ -185,7 +183,7 @@ function reg_form(str)
 		}
 		else
 		{
-			document.getElementById("msg1").innerHTML="! Please upload only PDF File";
+			document.getElementById("msg1").innerHTML="! Please upload only pdf File";
 			document.getElementById("submit").disabled=true;
 		}
 	} 
