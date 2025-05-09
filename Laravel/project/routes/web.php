@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ================== Website ==================================================
 Route::get('/', function () {
     return view('website.index'); // view page from view/website/index.php
 });
@@ -31,4 +32,38 @@ Route::get('/services', function () {
 
 Route::get('/contact', function () {
     return view('website.index');
+});
+
+
+//============ Admin ==================================================
+
+Route::get('/admin-login', function () {
+    return view('admin.admin_login');
+});
+
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+Route::get('/add_categories', function () {
+    return view('admin.add_categories');
+});
+
+Route::get('/manage_categories', function () {
+    return view('admin.manage_categories');
+});
+
+Route::get('/add_products', function () {
+    return view('admin.add_products');
+});
+
+Route::get('/manage_products', function () {
+    return view('admin.manage_products');
+});
+Route::get('/manage_customers', function () {
+    return view('admin.manage_customers');
+});
+
+Route::get('/manage_contacts', function () {
+    return view('admin.manage_contacts');
 });
