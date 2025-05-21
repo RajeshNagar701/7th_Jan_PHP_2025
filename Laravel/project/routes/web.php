@@ -2,6 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
+// use App\Http\Controllers\demo1Controller;
+
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\categoryController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\customerController;
+use App\Http\Controllers\productController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,9 +45,7 @@ Route::get('/contact', function () {
 
 //============ Admin ==================================================
 
-Route::get('/admin-login', function () {
-    return view('admin.admin_login');
-});
+Route::get('/admin-login',[adminController::class,'index']);
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
@@ -67,3 +73,18 @@ Route::get('/manage_customers', function () {
 Route::get('/manage_contacts', function () {
     return view('admin.manage_contacts');
 });
+
+
+
+// use App\Http\Controllers\demo1Controller;
+
+
+//Route::get('/invokable',class::demoController);  // invokable controller call
+
+//Route::get('/demo_add',[class::demo1Controller,'create']); // resource controller call
+//Route::get('/demo_manage',[class::demo1Controller,'index']);
+//Route::get('/demo_delete',[class::demo1Controller,'destroy']);
+
+
+
+
