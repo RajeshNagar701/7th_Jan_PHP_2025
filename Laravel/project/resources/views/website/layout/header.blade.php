@@ -58,6 +58,9 @@ Author URL: http://w3layouts.com
                         <li class="nav-item">
                             <a class="nav-link <?php nav('contact')?>" href="/contact">Contact</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?php nav('login')?>" href="/login">Login</a>
+                        </li>
                     </ul>
                     <form action="#search" method="GET" class="d-flex search-header ms-lg-2">
                         <input class="form-control" type="search" placeholder="Enter Keyword..." aria-label="Search"

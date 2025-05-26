@@ -17,7 +17,7 @@
                   <!--   Kitchen Sink -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Manage Products
+                            Manage Customers
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">

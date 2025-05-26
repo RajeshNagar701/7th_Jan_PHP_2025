@@ -14,7 +14,8 @@ class categoryController extends Controller
      */
     public function index()
     {
-        //
+        $data=category::all();
+        return view('admin.manage_categories',['data'=>$data]);
     }
 
     /**
@@ -24,7 +25,7 @@ class categoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.add_categories');
     }
 
     /**

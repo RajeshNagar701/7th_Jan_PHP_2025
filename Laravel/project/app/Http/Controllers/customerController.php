@@ -14,13 +14,10 @@ class customerController extends Controller
      */
     public function index()
     {
-        //
+        $data=customer::all();
+        return view('admin.manage_customers',['data'=>$data]);
     }
 
-    public function login()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -29,7 +26,7 @@ class customerController extends Controller
      */
     public function create()
     {
-        //
+        return view('website.signup');
     }
 
     /**
@@ -43,6 +40,11 @@ class customerController extends Controller
         //
     }
 
+    public function login()
+    {
+        return view('website.login');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -51,7 +53,7 @@ class customerController extends Controller
      */
     public function show(customer $customer)
     {
-        //
+       return view('website.profile');
     }
 
     /**
@@ -62,7 +64,7 @@ class customerController extends Controller
      */
     public function edit(customer $customer)
     {
-        //
+        return view('website.edit_profile');
     }
 
     /**
@@ -84,6 +86,11 @@ class customerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(customer $customer)
+    {
+        //
+    }
+
+    public function logout()
     {
         //
     }

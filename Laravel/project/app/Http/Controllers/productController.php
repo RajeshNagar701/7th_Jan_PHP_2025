@@ -14,7 +14,8 @@ class productController extends Controller
      */
     public function index()
     {
-        //
+        $data=product::all();
+        return view('admin.manage_products',['data'=>$data]);
     }
 
     /**
@@ -24,7 +25,7 @@ class productController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.add_products');
     }
 
     /**

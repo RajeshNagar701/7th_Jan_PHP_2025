@@ -24,25 +24,25 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
+                                            <th>#ID</th>
+                                            <th>Name</th>
+                                            <th>Image</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($data as $d)
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                            <td>{{$d->id}}</td>
+                                            <td>{{$d->name}}</td>
+                                            <td>{{$d->image}}</td>
                                             <td>
                                                 <a href="" class="btn btn-danger">Delete</a>
                                                 <a href="" class="btn btn-primary">Edit</a>
                                                 <a href="" class="btn btn-success">Unblock</a>
                                             </td>
                                         </tr>
+                                        @endforeach
                                        
                                     </tbody>
                                 </table>

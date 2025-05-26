@@ -38,9 +38,18 @@ Route::get('/services', function () {
     return view('website.services');
 });
 
-Route::get('/contact', function () {
-    return view('website.index');
-});
+
+
+Route::get('/signup',[customerController::class,'create']);
+Route::get('/login',[customerController::class,'login']);
+Route::get('/profile',[customerController::class,'profile']);
+Route::get('/edit_profile',[customerController::class,'edit']);
+
+Route::get('/user_logout',[customerController::class,'logout']);
+
+
+
+Route::get('/contact',[ContactController::class,'create']);
 
 
 //============ Admin ==================================================
@@ -51,29 +60,14 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
 
-Route::get('/add_categories', function () {
-    return view('admin.add_categories');
-});
+Route::get('/add_products',[productController::class,'create']);
+Route::get('/manage_products',[productController::class,'index']);
 
-Route::get('/manage_categories', function () {
-    return view('admin.manage_categories');
-});
+Route::get('/manage_customers',[customerController::class,'index']);
+Route::get('/manage_contacts',[ContactController::class,'index']);
 
-Route::get('/add_products', function () {
-    return view('admin.add_products');
-});
-
-Route::get('/manage_products', function () {
-    return view('admin.manage_products');
-});
-Route::get('/manage_customers', function () {
-    return view('admin.manage_customers');
-});
-
-Route::get('/manage_contacts', function () {
-    return view('admin.manage_contacts');
-});
-
+Route::get('/add_categories',[categoryController::class,'create']);
+Route::get('/manage_categories',[categoryController::class,'index']);
 
 
 // use App\Http\Controllers\demo1Controller;

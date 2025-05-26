@@ -14,7 +14,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $data=contact::all();
+        return view('admin.manage_contacts',['data'=>$data]);
     }
 
     /**
@@ -24,7 +25,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('website.contact');
     }
 
     /**
