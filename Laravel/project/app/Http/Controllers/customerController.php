@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\customer;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 class customerController extends Controller
 {
     /**
@@ -37,7 +37,27 @@ class customerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer=new customer;
+        $customer->name=$request->name;
+        $customer->email=$request->email;
+        $customer->pass=Hash::make($request->pass);
+        $customer->gender=$request->gender;
+        $customer->lag=implode(",",$request->lag); // lag arr to string
+        $customer->mobile=$request->mobile;
+
+        $file=$request->file('image'); // $_FILES['image']		
+        $filename=time()."_img.".$request->file('image')->getClientOriginalExtension(); // 12345678_img.jpg
+        $file->move('admin/upload/customer/',$filename);  // use move for move image in public/images
+        $customer->image=$filename; // name store in db
+
+        $res=$customer->save();
+        if($res)
+        {
+            echo "<script> 
+                alert('Signup Success'); 
+                window.location='/signup';
+                </script>";
+        }
     }
 
     public function login()

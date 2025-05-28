@@ -36,7 +36,18 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $contact=new contact;
+        $contact->name=$request->name;
+        $contact->email=$request->email;
+        $contact->comment=$request->comment;
+        $res=$contact->save();
+        if($res)
+        {
+            echo "<script> 
+                alert('contact Success'); 
+                window.location='/contact';
+                </script>";
+        }
     }
 
     /**

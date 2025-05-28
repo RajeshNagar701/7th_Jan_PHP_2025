@@ -41,6 +41,9 @@ Route::get('/services', function () {
 
 
 Route::get('/signup',[customerController::class,'create']);
+Route::post('/insert_user',[customerController::class,'store']);
+
+
 Route::get('/login',[customerController::class,'login']);
 Route::get('/profile',[customerController::class,'profile']);
 Route::get('/edit_profile',[customerController::class,'edit']);
@@ -50,6 +53,7 @@ Route::get('/user_logout',[customerController::class,'logout']);
 
 
 Route::get('/contact',[ContactController::class,'create']);
+Route::post('/insert_contact',[ContactController::class,'store']);
 
 
 //============ Admin ==================================================

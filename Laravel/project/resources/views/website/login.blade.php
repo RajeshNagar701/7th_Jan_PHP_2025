@@ -28,7 +28,7 @@
                 
                 <div class="offset-md-3 col-md-6 right-cont-contact ps-md-4 mt-md-0 mt-5">
                     <form method="post" class="w3layouts-contact-fm" action="" method="post">
-                        
+                        @csrf
                         <div class="form-group mb-3">
                             <input class="form-control" type="email" name="email" id="w3lSender"
                                 placeholder="Your Email" required="">

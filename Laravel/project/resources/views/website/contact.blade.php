@@ -56,21 +56,22 @@
                     </div>
                 </div>
                 <div class="col-md-6 right-cont-contact ps-md-4 mt-md-0 mt-5">
-                    <form method="post" class="w3layouts-contact-fm" action="https://sendmail.w3layouts.com/submitForm">
+                    <form method="post" class="w3layouts-contact-fm" action="{{url('/insert_contact')}}">
+                        @csrf
                         <div class="form-group mb-3">
-                            <input class="form-control" type="text" name="w3lName" id="w3lName" placeholder="Your Name"
+                            <input class="form-control" type="text" name="name" id="w3lName" placeholder="Your Name"
                                 required="">
                         </div>
                         <div class="form-group mb-3">
-                            <input class="form-control" type="email" name="w3lSender" id="w3lSender"
+                            <input class="form-control" type="email" name="email" id="w3lSender"
                                 placeholder="Your Email" required="">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="w3lMessage" id="w3lMessage" placeholder="Write Message"
+                            <textarea class="form-control" name="comment" id="w3lMessage" placeholder="Write Message"
                                 required=""></textarea>
                         </div>
                         <div class="form-group-2 mt-3 text-end">
-                            <button type="submit" class="btn btn-style">Submit Form</button>
+                            <button type="submit" name="submit" class="btn btn-style">Submit</button>
                         </div>
                     </form>
                 </div>
