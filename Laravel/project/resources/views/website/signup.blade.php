@@ -30,16 +30,25 @@
                 <form method="post" enctype="multipart/form-data" class="w3layouts-contact-fm" action="{{url('/insert_user')}}" method="post">
                     @csrf
                     <div class="form-group mb-3">
-                        <input class="form-control" type="text" name="name" id="w3lName" placeholder="Your Name"
-                            required="">
+                        <input class="form-control" type="text" value="{{old('name')}}" name="name" id="w3lName" placeholder="Your Name">
+                        @error('name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
                     </div>
                     <div class="form-group mb-3">
-                        <input class="form-control" type="email" name="email" id="w3lSender"
-                            placeholder="Your Email" required="">
+                        <input class="form-control" type="email" value="{{old('email')}}" name="email" id="w3lSender"
+                            placeholder="Your Email">
+                        @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group mb-3">
-                        <input class="form-control" type="password" name="pass" id="w3lSender"
-                            placeholder="Your Password" required="">
+                        <input class="form-control" type="password" value="{{old('pass')}}" name="pass" id="w3lSender"
+                            placeholder="Your Password">
+                        @error('pass')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     Gender :
                     <div class="form-check">
@@ -51,6 +60,9 @@
                         <label class="form-check-label">
                             <input type="radio" name="gender" class="form-check-input" value="Female">Female
                         </label>
+                        @error('gender')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     lag :
@@ -70,12 +82,18 @@
                         </label>
                     </div>
                     <div class="form-group mb-3">
-                        <input class="form-control" type="tel" name="mobile" id="w3lSender"
-                            placeholder="Your Mobile" required="">
+                        <input class="form-control" type="tel" value="{{old('mobile')}}" name="mobile" id="w3lSender"
+                            placeholder="Your Mobile">
+                        @error('mobile')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group mb-3">
                         <input class="form-control" type="file" name="image" id="w3lSender"
-                            placeholder="Your Imaghe" required="">
+                            placeholder="Your Imaghe">
+                        @error('image')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group-2 mt-3 text-end">

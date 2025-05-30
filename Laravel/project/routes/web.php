@@ -45,6 +45,8 @@ Route::post('/insert_user',[customerController::class,'store']);
 
 
 Route::get('/login',[customerController::class,'login']);
+Route::post('/authlogin',[customerController::class,'authlogin']);
+
 Route::get('/profile',[customerController::class,'profile']);
 Route::get('/edit_profile',[customerController::class,'edit']);
 

@@ -36,6 +36,11 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
+           $validator=$request->validate([
+            'name' => 'required|alpha',
+            'email' => 'required|unique:customers',
+            'comment'=>'required'
+        ]);
         $contact=new contact;
         $contact->name=$request->name;
         $contact->email=$request->email;

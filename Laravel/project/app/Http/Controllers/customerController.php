@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
+
 class customerController extends Controller
 {
     /**
@@ -14,8 +16,8 @@ class customerController extends Controller
      */
     public function index()
     {
-        $data=customer::all();
-        return view('admin.manage_customers',['data'=>$data]);
+        $data = customer::all();
+        return view('admin.manage_customers', ['data' => $data]);
     }
 
 
@@ -37,22 +39,30 @@ class customerController extends Controller
      */
     public function store(Request $request)
     {
-        $customer=new customer;
-        $customer->name=$request->name;
-        $customer->email=$request->email;
-        $customer->pass=Hash::make($request->pass);
-        $customer->gender=$request->gender;
-        $customer->lag=implode(",",$request->lag); // lag arr to string
-        $customer->mobile=$request->mobile;
+        $validator = $request->validate([
+            'name' => 'required|alpha',
+            'email' => 'required|unique:customers',
+            'pass' => 'required|min:8|max:12',
+            'mobile' => 'required|digits:10',
+            'gender' => 'required|in:Male,Female',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
 
-        $file=$request->file('image'); // $_FILES['image']		
-        $filename=time()."_img.".$request->file('image')->getClientOriginalExtension(); // 12345678_img.jpg
-        $file->move('admin/upload/customer/',$filename);  // use move for move image in public/images
-        $customer->image=$filename; // name store in db
+        $customer = new customer;
+        $customer->name = $request->name;
+        $customer->email = $request->email;
+        $customer->pass = Hash::make($request->pass);
+        $customer->gender = $request->gender;
+        $customer->lag = implode(",", $request->lag); // lag arr to string
+        $customer->mobile = $request->mobile;
 
-        $res=$customer->save();
-        if($res)
-        {
+        $file = $request->file('image'); // $_FILES['image']		
+        $filename = time() . "_img." . $request->file('image')->getClientOriginalExtension(); // 12345678_img.jpg
+        $file->move('admin/upload/customer/', $filename);  // use move for move image in public/images
+        $customer->image = $filename; // name store in db
+
+        $res = $customer->save();
+        if ($res) {
             echo "<script> 
                 alert('Signup Success'); 
                 window.location='/signup';
@@ -65,6 +75,34 @@ class customerController extends Controller
         return view('website.login');
     }
 
+    public function authlogin(Request $request)
+    {
+        $validator = $request->validate([
+            'email' => 'required',
+            'pass' => 'required',
+        ]);
+
+        $data = customer::where('email', $request->email)->first();
+        if (! $data || ! Hash::check($request->pass, $data->pass)) {
+            echo "<script>
+           alert('Login failed due to wrong credancial !');
+           window.location='/login';
+           </script>";
+        } else {
+            if ($data->status == "Unblock") {
+                echo "<script>
+            alert('Login Success !');
+            window.location='/';
+            </script>";
+            } else {
+                echo "<script>
+            alert('Login failed due to Blocked Account !');
+             window.location='/login';
+            </script>";
+            }
+        }
+    }
+
     /**
      * Display the specified resource.
      *
@@ -73,7 +111,7 @@ class customerController extends Controller
      */
     public function show(customer $customer)
     {
-       return view('website.profile');
+        return view('website.profile');
     }
 
     /**
