@@ -90,6 +90,12 @@ class customerController extends Controller
            </script>";
         } else {
             if ($data->status == "Unblock") {
+                
+                // session create
+                session()->put('uid',$data->id); 
+                session()->put('uname',$data->name); 
+                session()->put('uemail',$data->email);
+
                 echo "<script>
             alert('Login Success !');
             window.location='/';
@@ -101,6 +107,18 @@ class customerController extends Controller
             </script>";
             }
         }
+    }
+
+    public function userlogout()
+    {
+        session()->pull('uid');
+        session()->pull('uname');
+        session()->pull('uemail');
+         echo "<script>
+         alert('Logout Success !');
+            window.location='/login';
+        </script>";
+
     }
 
     /**
@@ -143,13 +161,20 @@ class customerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(customer $customer)
+    public function destroy(customer $customer,$id)
     {
-        //
+         $data=customer::find($id);
+         $old_image=$data->image;
+
+         $data->delete();
+
+         unlink('admin/upload/customer/'.$old_image);
+
+         echo "<script>
+         alert('Delete Success !');
+            window.location='/manage_customers';
+        </script>";
     }
 
-    public function logout()
-    {
-        //
-    }
+   
 }

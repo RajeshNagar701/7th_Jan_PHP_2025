@@ -1,14 +1,13 @@
-
 <?php
-  
-  function nav($currect_page) // index
-  {
-	  $url_array =  explode('/', $_SERVER['REQUEST_URI']) ; // current page url index
-	  $url = end($url_array);  
-	  if($currect_page == $url){
-		  echo 'active'; //class name in css 
-	  } 
-  }
+
+function nav($currect_page) // index
+{
+    $url_array =  explode('/', $_SERVER['REQUEST_URI']); // current page url index
+    $url = end($url_array);
+    if ($currect_page == $url) {
+        echo 'active'; //class name in css 
+    }
+}
 ?>
 
 <!--
@@ -47,26 +46,35 @@ Author URL: http://w3layouts.com
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
                         <li class="nav-item">
-                            <a class="nav-link <?php nav('index')?>" aria-current="page" href="/index">Home</a>
+                            <a class="nav-link <?php nav('index') ?>" aria-current="page" href="/index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php nav('about')?> " href="/about">About</a>
+                            <a class="nav-link <?php nav('about') ?> " href="/about">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php nav('services')?>" href="/services">Services</a>
+                            <a class="nav-link <?php nav('services') ?>" href="/services">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php nav('contact')?>" href="/contact">Contact</a>
+                            <a class="nav-link <?php nav('contact') ?>" href="/contact">Contact</a>
                         </li>
+
+                        @if(session()->has('uid'))
                         <li class="nav-item">
-                            <a class="nav-link <?php nav('login')?>" href="/login">Login</a>
+                            <a class="nav-link <?php nav('logout') ?>" href="/userlogout">Logout</a>
                         </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link <?php nav('login') ?>" href="/login">Login</a>
+                        </li>
+                        @endif
                     </ul>
-                    <form action="#search" method="GET" class="d-flex search-header ms-lg-2">
-                        <input class="form-control" type="search" placeholder="Enter Keyword..." aria-label="Search"
-                            required>
-                        <button class="btn btn-style" type="submit"><i class="fas fa-search"></i></button>
-                    </form>
+                    @if(session()->has('uid'))
+
+                        <a class="nav-link <?php nav('uprofile') ?>" href="/uprofile">
+                            hI .. {{session()->get('uname')}}
+                        </a>
+                    
+                    @endif
                 </div>
                 <!-- toggle switch for light and dark theme -->
                 <div class="cont-ser-position">

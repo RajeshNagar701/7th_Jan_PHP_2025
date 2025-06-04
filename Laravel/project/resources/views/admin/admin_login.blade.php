@@ -29,28 +29,30 @@
                 <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
                            
                             <div class="panel-body">
-                                <form role="form">
+                                <form action="{{url('/adminlogin')}}" role="form" method="post">
+                                    @csrf
                                     <hr />
                                     <h5>Enter Details to Login</h5>
                                        <br />
                                      <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
-                                            <input type="text" class="form-control" placeholder="Your Username " />
+                                            <input type="email" name="email" class="form-control" placeholder="Your Username" <?php if(isset($_COOKIE['aemail'])){ echo $_COOKIE['aemail'];} ?> />
                                         </div>
                                                                               <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" class="form-control"  placeholder="Your Password" />
+                                            <input type="password" name="pass" class="form-control"  placeholder="Your Password"  <?php if(isset($_COOKIE['apass'])){ echo $_COOKIE['apass'];} ?> />
                                         </div>
+                                       
                                     <div class="form-group">
                                             <label class="checkbox-inline">
-                                                <input type="checkbox" /> Remember me
+                                                <input type="checkbox" name="rem" value="rem"/> Remember me
                                             </label>
                                             <span class="pull-right">
                                                    <a href="index.html" >Forget password ? </a> 
                                             </span>
                                         </div>
                                      
-                                     <a href="index.html" class="btn btn-primary ">Login Now</a>
+                                     <input type="submit" name="submit" class="btn btn-primary" value="Login Now" />
                                     <hr />
                                     Not register ? <a href="index.html" >click here </a> or go to <a href="index.html">Home</a> 
                                     </form>

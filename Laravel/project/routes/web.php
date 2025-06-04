@@ -50,7 +50,7 @@ Route::post('/authlogin',[customerController::class,'authlogin']);
 Route::get('/profile',[customerController::class,'profile']);
 Route::get('/edit_profile',[customerController::class,'edit']);
 
-Route::get('/user_logout',[customerController::class,'logout']);
+Route::get('/userlogout',[customerController::class,'userlogout']);
 
 
 
@@ -61,6 +61,10 @@ Route::post('/insert_contact',[ContactController::class,'store']);
 //============ Admin ==================================================
 
 Route::get('/admin-login',[adminController::class,'index']);
+Route::post('/adminlogin',[adminController::class,'authlogin']);
+
+Route::get('/adminlogout',[adminController::class,'adminlogout']);
+
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
@@ -68,13 +72,18 @@ Route::get('/dashboard', function () {
 
 Route::get('/add_products',[productController::class,'create']);
 Route::get('/manage_products',[productController::class,'index']);
+Route::delete('/manage_products/{id}',[productController::class,'destroy']);
 
 Route::get('/manage_customers',[customerController::class,'index']);
+Route::get('/manage_customers/{id}',[customerController::class,'destroy']);
+
 Route::get('/manage_contacts',[ContactController::class,'index']);
+Route::get('/manage_contacts/{id}',[ContactController::class,'destroy']);
+
 
 Route::get('/add_categories',[categoryController::class,'create']);
 Route::get('/manage_categories',[categoryController::class,'index']);
-
+Route::get('/manage_categories/{id}',[categoryController::class,'destroy']);
 
 // use App\Http\Controllers\demo1Controller;
 
@@ -83,7 +92,7 @@ Route::get('/manage_categories',[categoryController::class,'index']);
 
 //Route::get('/demo_add',[class::demo1Controller,'create']); // resource controller call
 //Route::get('/demo_manage',[class::demo1Controller,'index']);
-//Route::get('/demo_delete',[class::demo1Controller,'destroy']);
+//Route::get('/demo_delete/{id}',[class::demo1Controller,'destroy']);
 
 
 

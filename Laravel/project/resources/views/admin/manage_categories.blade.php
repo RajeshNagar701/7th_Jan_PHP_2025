@@ -37,7 +37,7 @@
                                             <td>{{$d->name}}</td>
                                             <td>{{$d->image}}</td>
                                             <td>
-                                                <a href="" class="btn btn-danger">Delete</a>
+                                                <a href="{{url('/manage_categories/'.$d->id)}}" class="btn btn-danger">Delete</a>
                                                 <a href="" class="btn btn-primary">Edit</a>
                                                 <a href="" class="btn btn-success">Unblock</a>
                                             </td>

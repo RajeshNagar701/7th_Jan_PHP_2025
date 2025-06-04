@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
 
 class adminController extends Controller
 {
@@ -14,8 +16,52 @@ class adminController extends Controller
      */
     public function index()
     {
-        
         return view('admin.admin_login');
+    }
+
+    public function authlogin(Request $request)
+    {
+        $validator = $request->validate([
+            'email' => 'required',
+            'pass' => 'required',
+        ]);
+
+        $data = admin::where('email', $request->email)->first();
+        if (! $data || ! Hash::check($request->pass, $data->pass)) {
+            echo "<script>
+           alert('Login failed due to wrong credancial !');
+           window.location='/admin-login';
+           </script>";
+        } else {
+               
+                echo $rem=$request->rem;
+                if(isset($rem))
+                {
+                    Cookie::queue(Cookie::make('aemail', $data->email, 15));
+                    Cookie::queue(Cookie::make('apass', $data->pass, 15));
+                    
+                }
+             // session create
+                session()->put('aid',$data->id); 
+                session()->put('aname',$data->name); 
+                session()->put('aemail',$data->email);
+
+            echo "<script>
+            alert('Login Success !');
+            window.location='/dashboard';
+            </script>";
+        }
+    }
+     public function adminlogout()
+    {
+        session()->pull('aid');
+        session()->pull('aname');
+        session()->pull('aemail');
+         echo "<script>
+         alert('Logout Success !');
+            window.location='/admin-login';
+        </script>";
+
     }
 
     /**
@@ -23,10 +69,7 @@ class adminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
