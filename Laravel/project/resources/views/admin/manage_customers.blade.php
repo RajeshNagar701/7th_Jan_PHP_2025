@@ -44,8 +44,10 @@
                                         <td><img src="{{url('admin/upload/customer/'.$d->image)}}" width="50px"/></td>
                                         <td>
                                             <a href="{{url('/manage_customers/'.$d->id)}}" class="btn btn-danger">Delete</a>
-                                            <a href="" class="btn btn-primary">Edit</a>
-                                            <a href="" class="btn btn-success">Unblock</a>
+                                            <a href="#" class="btn btn-primary">Edit</a>
+                                            <a href="{{url('/status_user/'.$d->id)}}" class="btn btn-success">
+                                                {{$d->status}}
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach

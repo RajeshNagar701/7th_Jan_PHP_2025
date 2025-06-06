@@ -27,50 +27,86 @@
             <div class="row">
                 
                 <div class="offset-md-3 col-md-6 right-cont-contact ps-md-4 mt-md-0 mt-5">
-                    <form method="post" class="w3layouts-contact-fm" action="" method="post">
+                    <form method="post"  class="w3layouts-contact-fm" action="{{url('/updateuser/'.$data->id)}}" method="post">
+                        @csrf
                         <div class="form-group mb-3">
-                            <input class="form-control" type="text" name="name" id="w3lName" placeholder="Your Name"
+                            <input class="form-control" value="{{$data->name}}" type="text" name="name" id="w3lName" placeholder="Your Name"
                                 required="">
                         </div>
                         Gender : 
                         <div class="form-check">
                             <label class="form-check-label">
-                            <input type="radio" name="gender" class="form-check-input" value="Male">Male
+                               
+                            <input type="radio" name="gender" class="form-check-input"  value="Male" <?php 
+                                $gender=$data->gender;
+                                if($gender=="Male")
+                                {
+                                    echo "checked";
+                                }
+                                ?>>Male
                             </label>
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
-                            <input type="radio" name="gender" class="form-check-input" value="Female">Female
+                            <input type="radio" name="gender" class="form-check-input" value="Female" <?php 
+                                $gender=$data->gender;
+                                if($gender=="Female")
+                                {
+                                    echo "checked";
+                                }
+                                ?>>Female
                             </label>
                         </div>
 
                         lag : 
                         <div class="form-check">
                             <label class="form-check-label">
-                            <input type="checkbox" name="lag[]" class="form-check-input" value="Hindi">Hindi
+                            <input type="checkbox" name="lag[]" class="form-check-input" value="Hindi" <?php 
+                                $lag=$data->lag;
+                                $lag_arr=explode(',',$lag);
+                                if(in_array('Hindi',$lag_arr))
+                                {
+                                    echo "checked";
+                                }
+                                ?>>Hindi
                             </label>
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
-                            <input type="checkbox" name="lag[]" class="form-check-input" value="English">English
+                            <input type="checkbox" name="lag[]" class="form-check-input" value="English" <?php 
+                                $lag=$data->lag;
+                                $lag_arr=explode(',',$lag);
+                                if(in_array('English',$lag_arr))
+                                {
+                                    echo "checked";
+                                }
+                                ?>>English
                             </label>
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
-                            <input type="checkbox" name="lag[]" class="form-check-input" value="Gujarati">Gujarati
+                            <input type="checkbox" name="lag[]" class="form-check-input" value="Gujarati" <?php 
+                                $lag=$data->lag;
+                                $lag_arr=explode(',',$lag);
+                                if(in_array('Gujarati',$lag_arr))
+                                {
+                                    echo "checked";
+                                }
+                                ?>>Gujarati
                             </label>
                         </div>
                          <div class="form-group mb-3">
-                            <input class="form-control" type="tel" name="mobile" id="w3lSender"
+                            <input class="form-control" value="{{$data->mobile}}" type="tel" name="mobile" id="w3lSender"
                                 placeholder="Your Mobile" required="">
                         </div>
                          <div class="form-group mb-3">
                             <input class="form-control" type="file" name="image" id="w3lSender"
-                                placeholder="Your Imaghe" required="">
+                                placeholder="Your Imaghe" >
+                                <img src="{{url('admin/upload/customer/'.$data->image)}}" alt="" width="50px" />
                         </div>
                       
                         <div class="form-group-2 mt-3 text-end">
-                            <button type="submit" class="btn btn-style">Save</button>
+                            <button type="submit" name="submit" class="btn btn-style">Save</button>
                         </div>
                     </form>
                 </div>

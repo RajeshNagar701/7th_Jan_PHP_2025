@@ -47,8 +47,9 @@ Route::post('/insert_user',[customerController::class,'store']);
 Route::get('/login',[customerController::class,'login']);
 Route::post('/authlogin',[customerController::class,'authlogin']);
 
-Route::get('/profile',[customerController::class,'profile']);
-Route::get('/edit_profile',[customerController::class,'edit']);
+Route::get('/uprofile',[customerController::class,'show']);
+Route::get('/edit_profile/{id}',[customerController::class,'edit']);
+Route::post('/updateuser/{id}',[customerController::class,'update']);
 
 Route::get('/userlogout',[customerController::class,'userlogout']);
 
@@ -76,6 +77,8 @@ Route::delete('/manage_products/{id}',[productController::class,'destroy']);
 
 Route::get('/manage_customers',[customerController::class,'index']);
 Route::get('/manage_customers/{id}',[customerController::class,'destroy']);
+Route::get('/status_user/{id}',[customerController::class,'status']);
+
 
 Route::get('/manage_contacts',[ContactController::class,'index']);
 Route::get('/manage_contacts/{id}',[ContactController::class,'destroy']);

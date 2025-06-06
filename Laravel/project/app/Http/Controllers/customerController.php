@@ -90,11 +90,11 @@ class customerController extends Controller
            </script>";
         } else {
             if ($data->status == "Unblock") {
-                
+
                 // session create
-                session()->put('uid',$data->id); 
-                session()->put('uname',$data->name); 
-                session()->put('uemail',$data->email);
+                session()->put('uid', $data->id);
+                session()->put('uname', $data->name);
+                session()->put('uemail', $data->email);
 
                 echo "<script>
             alert('Login Success !');
@@ -114,11 +114,10 @@ class customerController extends Controller
         session()->pull('uid');
         session()->pull('uname');
         session()->pull('uemail');
-         echo "<script>
+        echo "<script>
          alert('Logout Success !');
             window.location='/login';
         </script>";
-
     }
 
     /**
@@ -129,7 +128,8 @@ class customerController extends Controller
      */
     public function show(customer $customer)
     {
-        return view('website.profile');
+        $data = customer::where('id', session()->get('uid'))->first();
+        return view('website.uprofile', ['data' => $data]);
     }
 
     /**
@@ -138,9 +138,10 @@ class customerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(customer $customer)
+    public function edit(customer $customer, $id)
     {
-        return view('website.edit_profile');
+        $data = customer::find($id);
+        return view('website.edit_profile', ['data' => $data]);
     }
 
     /**
@@ -150,9 +151,30 @@ class customerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, customer $customer)
+    public function update(Request $request, customer $customer, $id)
     {
-        //
+        $data = customer::find($id);
+
+
+        $data->name = $request->name;
+        $data->gender = $request->gender;
+        $data->lag = implode(",", $request->lag);
+        $data->mobile = $request->mobile;
+        if ($request->hasfile('image')) {
+            $old_image = $data->image; // get old image
+            unlink('admin/upload/customer/' . $old_image);
+
+            $file = $request->file('image'); // $_FILES['image']		
+            $filename = time() . "_img." . $request->file('image')->getClientOriginalExtension(); // 12345678_img.jpg
+            $file->move('admin/upload/customer/', $filename);  // use move for move image in public/images
+
+            $data->image = $filename; // name store in db
+        }
+        $data->update();
+        echo "<script>
+         alert('Update Success !');
+            window.location='/uprofile';
+        </script>";
     }
 
     /**
@@ -161,20 +183,41 @@ class customerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(customer $customer,$id)
+    public function destroy(customer $customer, $id)
     {
-         $data=customer::find($id);
-         $old_image=$data->image;
+        $data = customer::find($id);
+        $old_image = $data->image;
 
-         $data->delete();
+        $data->delete();
 
-         unlink('admin/upload/customer/'.$old_image);
+        unlink('admin/upload/customer/' . $old_image);
 
-         echo "<script>
+        echo "<script>
          alert('Delete Success !');
             window.location='/manage_customers';
         </script>";
     }
 
-   
+    public function status(customer $customer, $id)
+    {
+        $data = customer::find($id);
+        $status = $data->status;
+        if ($status == "Block") {
+            $data->status = "Unblock";
+            $data->update();
+
+            echo "<script>
+            alert('Unblock Success !');
+                window.location='/manage_customers';
+            </script>";
+        } else {
+            $data->status = "Block";
+            $data->update();
+
+            echo "<script>
+            alert('Block Success !');
+                window.location='/manage_customers';
+            </script>";
+        }
+    }
 }
