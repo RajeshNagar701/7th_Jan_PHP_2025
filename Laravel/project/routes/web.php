@@ -39,19 +39,17 @@ Route::get('/services', function () {
 });
 
 
+//   Route Middleware aPPLY
+Route::get('/signup',[customerController::class,'create'])->middleware('ubeforelogin');
+Route::post('/insert_user',[customerController::class,'store'])->middleware('ubeforelogin');
+Route::get('/login',[customerController::class,'login'])->middleware('ubeforelogin');
+Route::post('/authlogin',[customerController::class,'authlogin'])->middleware('ubeforelogin');
 
-Route::get('/signup',[customerController::class,'create']);
-Route::post('/insert_user',[customerController::class,'store']);
 
-
-Route::get('/login',[customerController::class,'login']);
-Route::post('/authlogin',[customerController::class,'authlogin']);
-
-Route::get('/uprofile',[customerController::class,'show']);
-Route::get('/edit_profile/{id}',[customerController::class,'edit']);
-Route::post('/updateuser/{id}',[customerController::class,'update']);
-
-Route::get('/userlogout',[customerController::class,'userlogout']);
+Route::get('/uprofile',[customerController::class,'show'])->middleware('uafterlogin');
+Route::get('/edit_profile/{id}',[customerController::class,'edit'])->middleware('uafterlogin');
+Route::post('/updateuser/{id}',[customerController::class,'update'])->middleware('uafterlogin');
+Route::get('/userlogout',[customerController::class,'userlogout'])->middleware('uafterlogin');
 
 
 
@@ -61,33 +59,36 @@ Route::post('/insert_contact',[ContactController::class,'store']);
 
 //============ Admin ==================================================
 
-Route::get('/admin-login',[adminController::class,'index']);
-Route::post('/adminlogin',[adminController::class,'authlogin']);
-
-Route::get('/adminlogout',[adminController::class,'adminlogout']);
 
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+//   Group Middleware aPPLY
+Route::group(['middleware'=>['abeforelogin']],function(){
+
+    Route::get('/admin-login',[adminController::class,'index']);
+    Route::post('/adminlogin',[adminController::class,'authlogin']);
+
 });
 
-Route::get('/add_products',[productController::class,'create']);
-Route::get('/manage_products',[productController::class,'index']);
-Route::delete('/manage_products/{id}',[productController::class,'destroy']);
+//   Group Middleware aPPLY
+Route::group(['middleware'=>['aafterlogin']],function(){
 
-Route::get('/manage_customers',[customerController::class,'index']);
-Route::get('/manage_customers/{id}',[customerController::class,'destroy']);
-Route::get('/status_user/{id}',[customerController::class,'status']);
+    Route::get('/adminlogout',[adminController::class,'adminlogout']);
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    });
+    Route::get('/add_products',[productController::class,'create']);
+    Route::get('/manage_products',[productController::class,'index']);
+    Route::delete('/manage_products/{id}',[productController::class,'destroy']);
+    Route::get('/manage_customers',[customerController::class,'index']);
+    Route::get('/manage_customers/{id}',[customerController::class,'destroy']);
+    Route::get('/status_user/{id}',[customerController::class,'status']);
+    Route::get('/manage_contacts',[ContactController::class,'index']);
+    Route::get('/manage_contacts/{id}',[ContactController::class,'destroy']);
+    Route::get('/add_categories',[categoryController::class,'create']);
+    Route::get('/manage_categories',[categoryController::class,'index']);
+    Route::get('/manage_categories/{id}',[categoryController::class,'destroy']);
 
-
-Route::get('/manage_contacts',[ContactController::class,'index']);
-Route::get('/manage_contacts/{id}',[ContactController::class,'destroy']);
-
-
-Route::get('/add_categories',[categoryController::class,'create']);
-Route::get('/manage_categories',[categoryController::class,'index']);
-Route::get('/manage_categories/{id}',[categoryController::class,'destroy']);
-
+});
 // use App\Http\Controllers\demo1Controller;
 
 
